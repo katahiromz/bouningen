@@ -1,0 +1,19 @@
+CXX = bcc32
+CXXFLAGS = -W -WM -WU
+OBJS = bouningen.obj pngres.obj
+
+all: bouningen.exe
+
+bouningen.exe: $(OBJS)
+	$(CXX) $(CXXFLAGS) -ebouningen.exe $(OBJS)
+	brc32 bouningen
+bouningen.obj: pngres.h resource.h bouningen.cpp
+	$(CXX) $(CXXFLAGS) -c bouningen.cpp
+pngres.obj: pngres.h pngres.cpp
+	$(CXX) $(CXXFLAGS) -c pngres.cpp
+
+clean:
+	if exist *.obj del *.obj
+	if exist *.res del *.res
+	if exist *.tmp del *.tmp
+	if exist *.tds del *.tds

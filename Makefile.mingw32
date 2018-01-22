@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -m32 -mwindows -municode -mthreads -static -Wall -pedantic -DUNICODE -D_UNICODE --input-charset=cp932
+OBJS = bouningen.o pngres.o bouningen_res.o
+
+all: bouningen.exe
+
+bouningen.exe: $(OBJS)
+	$(CXX) $(CXXFLAGS) -o bouningen.exe $(OBJS) -lpng -lz
+bouningen.o: pngres.h resource.h bouningen.cpp
+	$(CXX) $(CXXFLAGS) -c bouningen.cpp
+pngres.o: pngres.h pngres.cpp
+	$(CXX) $(CXXFLAGS) -c pngres.cpp
+
+bouningen_res.o: pngres.h resource.h bouningen.rc
+	windres -i bouningen.rc -o bouningen_res.o
+
+clean:
+	rm *.o

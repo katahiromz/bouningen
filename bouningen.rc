@@ -1,0 +1,8 @@
+#include <windows.h>
+#include "pngres.h"
+#include "resource.h"
+
+ID_LEFT1 PNG "left1.png"
+ID_LEFT2 PNG "left2.png"
+ID_RIGHT1 PNG "right1.png"
+ID_RIGHT2 PNG "right2.png"
